@@ -36,8 +36,8 @@ if __name__ == "__main__":
         for line in fr.readlines()[1:]:
             l=line.split()
             tags = " ".join(l[5:])
-            #uttid: 'track_0000214-artist_000014-album_000031'
-            uttid = "-".join(l[0:3])
+            #uttid: 'artist_000014-album_000031-track_0000214'
+            uttid = "-".join([l[1], l[2], l[0]])
             if os.path.basename(l[3]).split('.')[0] in audio_basename_set:
                 low_quality_audio_file = os.path.join(os.path.dirname(audio_path), os.path.basename(l[3]).split('.')[0] + ".low.mp3")
                 if random.randint(0, 4) == 4: 
