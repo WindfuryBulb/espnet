@@ -443,9 +443,12 @@ class Speech2Text:
                 )
                 for x in encs
             ]
+            logging.info("max enc length: " + str(max_len))
             enc = torch.cat(encs, dim=1)
+            logging.info("enc length: " + str(enc.size(1)))
             mean_pooling = torch.nn.AdaptiveAvgPool1d(max_len)
             enc = mean_pooling(enc)
+            logging.info("new enc length: " + str(enc.size(1)))
         else:
             # b. Forward Encoder
             enc, _ = self.asr_model.encode(**batch)
